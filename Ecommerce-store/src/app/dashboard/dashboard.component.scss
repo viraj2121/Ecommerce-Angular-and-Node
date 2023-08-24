@@ -1,0 +1,270 @@
+@import "../Utility/variable.scss";
+
+.carousel {
+    margin-top: -5.55rem;
+    position: relative;
+    height: 100vh;
+    z-index: 10;
+
+    &-item {
+        img {
+            height: 100vh;
+            width: 100vw;
+            filter: brightness(30%);
+            transition: 0.3s;
+        }
+    }
+
+    &-control-prev {
+        z-index: 3;
+
+        & i {
+            font-size: 3rem;
+            color: $_color_white;
+            transition: 0.3s;
+        }
+    }
+
+    &-control-next {
+        z-index: 3;
+
+        & i {
+            font-size: 3rem;
+        }
+    }
+
+    &-caption {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%);
+        padding: 0;
+
+        & .women-collection {
+            font-family: "Playfair-regular";
+            color: $_color_white;
+            font-size: 3rem;
+            z-index: 2;
+            line-height: 4rem;
+            position: relative;
+            display: block;
+            animation: slideDown 1s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        & .new-arrivals {
+            font-family: "poppins-bold";
+            color: $_color_white;
+            font-size: 3rem;
+            z-index: 2;
+            line-height: 4rem;
+            word-spacing: 2px;
+            position: relative;
+            display: block;
+            margin-top: 50px;
+            animation: slideIn 1s ease-out 1s forwards;
+            opacity: 0;
+        }
+    }
+
+    &-indicators {
+        & button {
+            width: 200px;
+            height: auto;
+            position: relative;
+            margin-left: 0;
+
+            & img {
+                max-width: 200px;
+                position: absolute;
+                top: -10rem;
+                left: 0;
+            }
+
+            .women-wear-span {
+                // visibility: hidden;
+                position: absolute;
+                top: -10rem;
+                width: 100%;
+                text-align: center;
+                color: white;
+            }
+        }
+
+      
+    }
+}
+
+.shop-now-btn {
+    font-size: 1.2rem;
+    color: $_color_white;
+    padding: 1rem 3rem;
+    border: none;
+    line-height: 1.2;
+    border-radius: 3rem;
+    opacity: 0;
+    transition: 0.2s;
+    animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) 1.6s forwards;
+
+    &:hover {
+        background-color: white;
+        color: $_color_primary;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scale-up-center {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+
+    50% {
+        opacity: 0.5;
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+.popular-clothes {
+    width: 100%;
+    padding: 3rem 0;
+    background-color: white;
+
+    &__container {
+        max-width: 1300px;
+        margin: 0 auto;
+
+        .row {
+            width: 100%;
+
+            .col-lg-6 {
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+        }
+
+        &__img-section {
+            position: relative;
+            border: 1px solid #e6e6e6;
+            cursor: pointer;
+
+            background-color: $_color_white;
+
+            & img {
+                max-width: 100%;
+            }
+        }
+    }
+
+    &__text-top {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px 20px;
+        width: 100%;
+        height: 100%;
+        transition: all 0.4s;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+
+        & strong {
+            display: block;
+            font-size: 1.8rem;
+            color: $_colorBlack;
+            font-family: "Poppins-bold";
+        }
+
+        & small {
+            display: block;
+            font-size: 0.8rem;
+            color: $_colorBlack;
+            font-family: "Poppins-regular";
+        }
+
+        &:hover {
+            background-color: rgba(103, 117, 214, 0.8);
+
+            & strong,
+            small {
+                color: $_color_white;
+            }
+
+            .popular-clothes__text-bottom {
+                transform: translateY(0px);
+                opacity: 1;
+
+                &::before{
+                    width: 100%;
+                    
+                }
+            }
+
+        }
+
+
+    }
+
+    &__text-bottom {
+        width: max-content;
+        padding: 10px 0;
+        transform: translateY(50px);
+        opacity: 0;
+        font-size: 1rem;
+        color: $_color_white;
+        font-family: "Poppins-bold";
+        transition: 0.3s all;
+
+        position: relative;
+        &::before{
+            content: "";
+            background-color: white;
+            width: 0%;
+            height: 1px;
+            position: absolute;
+            bottom: 10px;
+            transition: 0.1s all;
+        }
+    }
+    
+}
+
+::ng-deep .p-button{
+    background:  $_color_primary !important;
+  }
+
+  @media only screen and (max-width:1400px){
+    .carousel-indicators{
+        display: none;
+    }
+}

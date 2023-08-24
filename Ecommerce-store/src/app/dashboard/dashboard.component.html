@@ -1,0 +1,100 @@
+<section (scroll)="scrollHandler($event)" appScrollReveal>
+    <div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1">
+                <img src="../../assets/images/slide-05.jpg" alt="women img">
+
+            </button>
+            <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="1" aria-label="Slide 2">
+                <img src="../../assets/images/slide-06.jpg" alt="women img">
+            </button>
+            <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="2" aria-label="Slide 3">
+                <img src="../../assets/images/slide-07.jpg" alt="women img">
+            </button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="4000">
+                <img src="../../assets/images/slide-05.jpg" class="d-block w-10" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1 class="women-collection">Womens Collection 2018</h1>
+                    <p class="new-arrivals">New Arrivals </p>
+                    <button class="shop-now-btn primary-bg">Shop now</button>
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="3000">
+                <img src="../../assets/images/slide-06.jpg" class="d-block w-10" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1 class="women-collection">Mens New Season</h1>
+                    <p class="new-arrivals">Jackets & Cotas </p>
+                    <button class="shop-now-btn primary-bg">Shop now</button>
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="3000">
+                <img src="../../assets/images/slide-07.jpg" class="d-block w-10" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1 class="women-collection">Mens Collection 2018</h1>
+                    <p class="new-arrivals">New Arrivals </p>
+                    <button class="shop-now-btn primary-bg">Shop now</button>
+                </div>
+
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev">
+            <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+             -->
+            <i class="fa fa-caret-left" aria-hidden="true"></i>
+
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="next">
+            <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
+            <span class="visually-hidden">Next</span>
+
+        </button>
+    </div>
+    <div class="popular-clothes">
+        <div class="popular-clothes__container">
+            <div class="row">
+                <div class="col-lg-6 " data-aos="fade-up" data-aos-duration="1200" *ngFor="let img of Products  | slice:0:2" >
+                    <div class="popular-clothes__container__img-section">
+                        <img src="{{img.imgurl}}" alt="" />
+                        <div class="popular-clothes__text-top">
+                            <Div>
+                                <strong>{{img.name}}</strong>
+                                <small>New Trend</small>
+                            </Div>
+                            <div class="popular-clothes__text-bottom">
+                                Shop Now
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+          <div class="row mt-4">
+                <div class="col-lg-4"  data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300"   *ngFor="let img of imgUrls  | slice:2:5">
+                    <div class="popular-clothes__container__img-section">
+                        <img src="{{img.imgurl}}" alt="" />
+                        <div class="popular-clothes__text-top">
+                            <Div>
+                                <strong>{{img.name}}</strong>
+                                <small>New Trend</small>
+                            </Div>
+                            <div class="popular-clothes__text-bottom">
+                                Shop Now
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+ <app-productoverview></app-productoverview> 
+<!-- <app-quickview></app-quickview> -->

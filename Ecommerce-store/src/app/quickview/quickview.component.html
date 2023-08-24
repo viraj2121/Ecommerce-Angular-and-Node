@@ -1,0 +1,111 @@
+<div class="modal fade" *ngIf="isOpen" [ngClass]="{ 'show': isOpen }">
+    <div class="modal-dialog scale-in-center">
+        <div class="modal-content">
+      <div class="modal-header">
+      
+        <button class="close-button" (click)="closeModal.emit()">X</button>
+      </div>
+      <div class="modal-body">
+        <div class="quick-view-section">
+          <div class="row">
+            <div class="col-md-7">
+              <div class="quick-view-section__img-view-section">
+                <div class="img-view-section__left-side">
+                  <!-- <img src="../../assets/images/product-detail-01.jpg" alt="">
+                  <img src="../../assets/images/product-detail-02.jpg" alt="">
+                  <img src="../../assets/images/product-detail-03.jpg" alt=""> -->
+
+                </div>
+                <div class="img-view-section__right-side magnifier-container">
+                  <img  class="image" src="{{this.theProduct.imgObject.imgurl}}" >
+                
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="text-section">
+                  <div class="text-section__product-name">{{this.theProduct.name}}</div>
+                  <div class="text-section__product-price">$ {{this.theProduct.cost}}</div>
+                  <div class="text-section__product-details">{{this.theProduct.description}}</div>
+              </div>
+              <div class="size-dropdown">
+                <div class="size-dropdown__container row">
+                  <div class="col-md-2">
+                    <label for="size-dropdown__custom" class="size-dropdown__label"> Size</label>
+                  </div>
+                  <div class="col-md-10">
+                    <div class="size-dropdown__custom">
+                      <div class="size-dropdown__custom__header" (click)="toggleDropdownSize()">
+                        {{dropdownSizeHeader}}
+                      </div>
+                      <i class="fa fa-caret-down size-dropdown__custom__down-arrow" aria-hidden="true"></i>
+                      <div class="size-dropdown__custom__data" *ngIf="toggleSizeDropdown">
+                        <ul>
+                          <li *ngFor="let theSize of Sizes" (click)="onSelectedSize(theSize)"[class.activesize]="selectedSize==theSize">{{theSize}}</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  
+                </div>
+              </div>
+              <div class="size-dropdown">
+                <div class="size-dropdown__container row">
+                  <div class="col-md-2">
+                    <label for="size-dropdown__custom" class="size-dropdown__label">Color</label>
+                  </div>
+                  <div class="col-md-10">
+                    <div class="size-dropdown__custom">
+                      <div class="size-dropdown__custom__header" (click)="toggleDropdownColor()">
+                        {{dropdowncolorHeader}}
+                      </div>
+                      <i class="fa fa-caret-down size-dropdown__custom__down-arrow" aria-hidden="true"></i>
+                      <div class="size-dropdown__custom__data" *ngIf="isToshowColorDropdown">
+                        <ul>
+                          <li *ngFor="let color of Colors" (click)="onSelectedcolor(color)"[class.activesize]="selectedcolor==color">{{color}}</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+              
+              <div class="row add-to-fav-counter-section">
+                <Div class="col-md-2">
+
+                </Div>
+                <div class="col-md-10 counter-cart-flexbox">
+                  <div class="item-counter">
+                    <div class="item-counter__minus" (click)="increamentdecreament('minus')">
+                      -
+                    </div>
+                    <div class="item-counter__count">
+                      {{counter}}
+                    </div>
+                    <div class="item-counter__plus" (click)="increamentdecreament('plus')">
+                      +
+                    </div>
+                  </div>
+                  <button class="add-to-cart" (click)="Addtocart()">Add To Cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="modal-footer">
+     
+        <button class="cancel-button"(click)="closeModal.emit()">Cancel</button>
+    
+      </div> -->
+    </div>
+    </div>
+  </div>
+  
+<div *ngIf="isOpen">
+    <div class="modal-backdrop fade show"></div>
+</div>
+

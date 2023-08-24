@@ -1,0 +1,112 @@
+<div class="header-container" [class]="className">
+  <div class="header-container__content">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white nav-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="../../assets/images/icons/logo-02.png" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Shop</a>
+            </li>
+            <li class="nav-item navbar-item__features">
+              <a class="nav-link" href="#">Features</a>
+              <span>Hot</span>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Blog</a>
+
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+            <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Features
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                  </li> -->
+
+          </ul>
+          <form class="d-flex">
+            <div class="nav-icons">
+              <span class="nav-icons__shopping" (click)="opencart()">
+                <i class="fa fa-shopping-cart"></i>
+                <div class="nav-icons__shopping__tag">{{totalCartcount}}</div>
+              </span>
+              <span class="nav-icons__hamburger">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+              </span>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<p-sidebar [(visible)]="display" position="right" [showCloseIcon]="false" [modal]="false" class="p-sidebar-mask">
+  <ng-template pTemplate="header">Header Content</ng-template>
+  <div class="cart-header">
+    <span class="cart-header__span">Your Cart</span>
+    <i class="fa fa-times" (click)="display = false"></i>
+  </div>
+  <div class="cart-section">
+
+    <div class="cart-section__container" *ngFor="let item of mycart" >
+      <div class="cart-section__container__img" *ngFor="let image of images">
+        <div *ngIf="item.name === image.name && image.isthumbnail">
+          <img src="{{image?.imgurl}}" alt="{{image?.name}}" />
+        </div>
+      </div>
+      <div class="cart-section__container__quntity">
+        <span class="cart-section__container__prodname">{{item.name}}</span><br>
+        <span class="quantitly-price">
+          {{item.quantity}}
+          &nbsp;&nbsp;X&nbsp;&nbsp;
+          <span *ngFor="let price of products">
+            <span *ngIf="price.prodid===item.prodid">
+              <i class="fa fa-usd" aria-hidden="true"></i> {{price.cost}}
+            </span>
+          </span>
+        </span>
+      </div>
+      <div class="cart-section__container__deleted-cart">
+        
+        <i class="fa fa-trash" aria-hidden="true" (click)="deleteFromCart(item)"></i>
+      </div>
+    </div>
+ 
+    <div class="empty-cart-state" *ngIf="mycart.length==0">
+     Your Cart is Empty, Please Add items in cart
+    </div>
+  </div>
+  
+ 
+
+
+</p-sidebar>
+
+
+
+
+<div *ngIf="display">
+  <div class="modal-backdrop fade show"></div>
+</div>

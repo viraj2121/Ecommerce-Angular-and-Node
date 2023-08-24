@@ -1,0 +1,148 @@
+<section class="product-overview">
+    <h1>Product Overview</h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="sorting-section">
+                <div class="sorting-section__links">
+                    <ul>
+                        <li [class.active-link]="selectedCategory === 'All products'"
+                            (click)="sortbycategory('All products')">All products</li>
+                        <li [class.active-link]="selectedCategory === category" *ngFor="let category of categoryName"
+                            (click)="sortbycategory(category)">{{category}}</li>
+
+                    </ul>
+                </div>
+                <div class="sorting-section__filter-search">
+                    <div class="sorting-section__filter-search__filter-box" (click)="togglefilter()" #filterbutton>
+                        <i class="bars-search" aria-hidden="true"></i>Filter
+                    </div>
+                    <div class="sorting-section__filter-search__search-box" (click)="togglSearch()" #searchbutton><i
+                            class="fa fa-search" aria-hidden="true"></i>Search</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="filter-section scale-up-ver-top " *ngIf="isFilterBox">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="filter-section__sort-by">
+                    <h3>Sort By</h3>
+                    <ul>
+                        <li [class.active-link]="activesortPrice === sort" *ngFor="let sort of sortByArray"
+                            (click)="sortbyPrice(sort)">{{sort}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <Div class="filter-section__color-filter">
+                    <h3>Color</h3>
+                    <ul>
+                        <li *ngFor="let color of colorNames" [class.active-link]="activcolor === color">
+                            <span class="filter-section__color-filter__color-dot"
+                                [style.background-color]="color"></span>
+                            <span class="filter-section__color-filter__color-name" (click)="filterByColor(color)">
+                                {{color}}
+                            </span>
+                        </li>
+                    </ul>
+
+                </Div>
+            </div>
+            <div class="col-lg-4">
+                <Div class="filter-section__tags-filter">
+                    <h3>Tags</h3>
+                    <ul>
+                        <li *ngFor="let tags of tagsValues" (click)="filterByTags(tags)"
+                            [class.active-tag]="activetag === tags">{{tags}}</li>
+                    </ul>
+                </Div>
+            </div>
+        </div>
+    </div>
+    <div class="searchbox-section scale-up-ver-top " *ngIf="isToShowSearchInput">
+        <div class="row">
+            <div class="col-lg-12 searchbox-section__container">
+                <input class="searchbox-section__inputbox" type="text" placeholder="Enter Product name"
+                    title="Search by product name" (input)="onsearch($event)" [(ngModel)]="searchvalue" />
+                <i class="fa fa-search searchbox-section__icon" aria-hidden="true"></i>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="products-card" *ngIf="!isLoadingCards">
+        <div class="row">
+            <div class="col-lg-3" data-aos="fade-up" data-aos-duration="1200"  *ngFor="let product of paginatedProducts">
+                <div>
+                    <div class="products-card__img-section">
+                        <img src="{{product.imgObject?.imgurl}}" alt="">
+                        <button class="products-card__img-section__quick-img-view"
+                            (click)="triggerImageViewer(product.imgObject?.imgurl)"><i class="fa fa-expand"
+                                aria-hidden="true"></i></button>
+                        <!-- <button  class="products-card__img-section__quick-view" >View Image</button> -->
+                        <button class="products-card__img-section__quick-view" type="button"
+                            (click)="openModal(product.prodid)">Quick view</button>
+                    </div>
+                    <div class="products-card__text-section">
+                        <div>
+                            <div class="products-card__text-section__product-name">{{product.name}}</div>
+                            <div class="products-card__text-section__price">$ {{product.cost}}</div>
+                        </div>
+                        <div class="products-card__text-section__add-to-fav">
+                            <i class="" aria-hidden="true" ></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="pagination">
+            <button (click)="previousPage()" [disabled]="currentPage === 1"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+            <button (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= productsview.length"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+          </div>
+    </div>
+   
+    <!-- skelton animation container -->
+
+    <div class="products-card" *ngIf="isLoadingCards">
+        <div class="row">
+            <div class="col-lg-3" data-aos="fade-up" data-aos-duration="cardanimationdelay" *ngFor="let product of productsview">
+                <div>
+                    <div class="products-card__img-section image-skelton">
+                        <!-- <img src="{{product.imgObject?.imgurl}}" alt=""> -->
+                       
+                        <!-- <button  class="products-card__img-section__quick-view" >View Image</button> -->
+                       
+                    </div>
+                    <div class="products-card__text-section">
+                        <div class=" image-skelton-text">
+                            <div class="products-card__text-section__product-name "></div>
+                            <div class="products-card__text-section__price"></div>
+                        </div>
+                      
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="no-product-available" *ngIf="this.productsview.length===0">
+        no products
+    </div>
+</section>
+
+<app-quickview [isOpen]="isModalOpen" [theProduct]="theproduct" [productId]="productId"
+    (closeModal)="closeModal()"></app-quickview>
+
+
+
+<app-img-viewr></app-img-viewr>
+
+
+
